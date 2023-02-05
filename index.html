@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vaccination Tracker</title>
+    <style>
+      /* Add your styles here */
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 50px;
+        font-size: 36px;
+        color: #333;
+      }
+
+      form {
+        margin-top: 50px;
+        display: inline-block;
+        text-align: left;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      input[type="text"], select {
+        padding: 10px;
+        font-size: 18px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+      }
+
+      input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+
+      table {
+        margin-top: 50px;
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="about.html"><input type="submit" value="About"></a>
+
+    <div class="container">
+      <h1>Vaccination Tracker</h1>
+      <form id="vaccination-form">
+        <label for="location">Location:</label>
+        <select id="location" name="location">
+          <option value="Indore">Indore</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Ahmedabad">Ahmedabad</option>
+          <option value="Pune">Pune</option>
+          <option value="Surat">Surat</option>
+
+
+        </select>
+        <input type="submit" value="Submit">
+      </form>
+      <ul id="recommended-vaccinations"></ul>
+      
+</div>
+<div id="vaccination-status-section">
+  <h3>Vaccination Status</h3>
+  <table>
+    <tr>
+      <th>Vaccination</th>
+      <th>Status</th>
+    </tr>
+    <tbody id="vaccination-status-list"></tbody>
+  </table>
+</div>
+<script>
+  const form = document.querySelector("#vaccination-form");
+  const recommendedVaccinationsList = document.querySelector("#recommended-vaccinations");
+  const vaccinationStatusList = document.querySelector("#vaccination-status-list");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const location = form.elements.location.value;
+
+    // Simulate API call to retrieve recommended vaccinations for the selected location
+    let recommendedVaccinations = [];
+    switch (location) {
+      case "Select":
+        recommendedVaccinations = ["select a vaccine city first"];
+        break;
+      case "Delhi":
+        recommendedVaccinations = ["Flu Shot", "Tetanus", "Measles, Mumps, Rubella (MMR)"];
+        break;
+      case "Kolkata":
+        recommendedVaccinations = ["Flu Shot", "Tetanus", "Hepatitis A & B"];
+        break;
+        
+        case "Chennai":
+            recommendedVaccinations = ["Flu Shot", "Tetanus", "Hepatitis A & B"];
+            break;
+        
+        case "Mumbai":
+            recommendedVaccinations = ["Flu Shot", "Tetanus", "Hepatitis A & B"];
+            break;
+
+        case "Bangalore":
+            recommendedVaccinations = ["Flu Shot", "Tetanus"];
+            break;
+        
+        case "Hyderabad":
+            recommendedVaccinations = ["Flu Shot", "Tetanus"];
+            break;
+
+        case "Ahmedabad":
+            recommendedVaccinations = ["Flu Shot", "Tetanus"];
+            break;
+
+        case "Pune":
+            recommendedVaccinations = ["Flu Shot", "Tetanus"];
+            break;
+        
+        case "Surat":
+            recommendedVaccinations = ["Flu Shot", "Tetanus"];
+            break;
+
+        case "Indore":
+            recommendedVaccinations = ["Flu Shot", "Tetanus"];
+            break;
+
+        
+        
+    }
+
+    // Display recommended vaccinations on the page
+    recommendedVaccinationsList.innerHTML = "";
+    recommendedVaccinations.forEach(function(vaccination) {
+      const li = document.createElement("li");
+      li.textContent = vaccination;
+      recommendedVaccinationsList.appendChild(li);
+
+      // Add row in the vaccination status table for the recommended vaccination
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${vaccination}</td>
+        <td>
+          <select>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </td>
+      `;
+      vaccinationStatusList.appendChild(tr);
+    });
+  });
+</script>
+website attempt by Yuga Jain. Please check out the button on the top or click this link. <a href="about.html">About</a>
+</body>
+</html>
